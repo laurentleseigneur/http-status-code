@@ -42,5 +42,5 @@ runs:
         --url="${{ inputs.url }}" \
         --username="${{ inputs.username }}" \
         --password="${{ inputs.password }}" \
-        --interval="${{ inputs.interval }}"\
+        --interval=${{ inputs.interval }}
       shell: bash
