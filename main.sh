@@ -50,7 +50,7 @@ function poll_status {
     echo "interval set to [$interval]";
     STATUS_CODE=`curl -A "Web Check" -sL --connect-timeout 3 -w "%{http_code}\n" $auth $url -o /dev/null`
     echo "$(date +%H:%M:%S): The status code is $STATUS_CODE";
-    if [[ "$STATUS_CODE" == "200" ]]; then
+    if [[ "$STATUS_CODE" == "${code}" ]]; then
           echo "success";
           exit 0;
         break;
@@ -59,5 +59,5 @@ function poll_status {
   done
 }
 
-printf "\nPolling '${url%\?*}' every $interval seconds, until status is '200'\n"
+printf "\nPolling '${url%\?*}' every $interval seconds, until status is '$code'\n"
 poll_status
