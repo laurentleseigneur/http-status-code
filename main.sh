@@ -47,9 +47,8 @@ function poll_status {
     if [[ "$username" != "" ]]; then
       auth="-u $username:$password"
     fi;
-    echo "interval set to [$interval]";
     STATUS_CODE=`curl -A "Web Check" -sL --connect-timeout 3 -w "%{http_code}\n" $auth $url -o /dev/null`
-    echo "$(date +%H:%M:%S): The status code is $STATUS_CODE";
+    echo "$(date +%H:%M:%S): status code [$STATUS_CODE]";
     if [[ "$STATUS_CODE" == "${code}" ]]; then
           echo "success";
           exit 0;
